@@ -8,3 +8,6 @@ Informações relacionadas a BI
 ## 2 - UBER - https://github.com/Leobinder/Dashboard_Analise_Uber
 
 ## 3  - WMS - https://www.linkedin.com/posts/cdioto_dashboard-de-ocupa%C3%A7%C3%A3o-de-armaz%C3%A9m-wms-nesse-activity-7378919790737784832-A2cG/?utm_source=share&utm_medium=member_android&rcm=ACoAAAS_d84BXtjQKMTY1zd7Lar4QjmTRl6_DMU
+
+## Cursos
+1) - Imersão PowerBI - https://www.youtube.com/watch?v=tOmFYZTZkw0
