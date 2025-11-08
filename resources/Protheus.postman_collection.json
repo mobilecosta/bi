@@ -1,0 +1,853 @@
+{
+	"info": {
+		"_postman_id": "33381edd-d539-4973-8691-d01da16e12c0",
+		"name": "Protheus",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1755482"
+	},
+	"item": [
+		{
+			"name": "00-Ping",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/ping",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"ping"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "01-ExecAuto",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"EXECAUTO\":\"MATA240\",\r\n   \"DADOS\": {\r\n      \"D3_TM\":\"001\",\r\n      \"D3_COD\":\"REDE001595X\",\r\n      \"D3_LOCAL\":\"01\",\r\n      \"D3_QUANT\":1 \r\n}"
+				},
+				"url": {
+					"raw": "http://187.94.63.180:38125/rest/execauto",
+					"protocol": "http",
+					"host": [
+						"187",
+						"94",
+						"63",
+						"180"
+					],
+					"port": "38125",
+					"path": [
+						"rest",
+						"execauto"
+					]
+				},
+				"description": "http://187.94.63.180:38125/rest/execauto"
+			},
+			"response": []
+		},
+		{
+			"name": "02-Token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"postman.setEnvironmentVariable('access_token', JSON.parse(responseBody).access_token)"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/api/oauth2/v1/token?grant_type=password&username=admin&password=admin",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"oauth2",
+						"v1",
+						"token"
+					],
+					"query": [
+						{
+							"key": "grant_type",
+							"value": "password"
+						},
+						{
+							"key": "username",
+							"value": "admin"
+						},
+						{
+							"key": "password",
+							"value": "admin"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "03-Get Suspects",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/crm/v1/Suspects?Page=1",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"crm",
+						"v1",
+						"Suspects"
+					],
+					"query": [
+						{
+							"key": "Page",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Suspect Padrao",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"Code\": \"000002\",\r\n\t\"StoreId\": \"01\",\r\n\t\"InternalId\": \"000002\",\r\n\t\"ShortName\": \"MOBILE\",\r\n\t\"Name\": \"MOBILE\",\r\n\t\"EntityType\": \"1-Company\",\r\n\t\"StrategicType\": \"3\",\r\n\t\"Origin\": \"1\",\r\n\t\"Address\": [],    \r\n}    "
+				},
+				"url": {
+					"raw": "{{url_protheus}}/api/protheus/api/crm/v1/Suspects",
+					"host": [
+						"{{url_protheus}}"
+					],
+					"path": [
+						"api",
+						"protheus",
+						"api",
+						"crm",
+						"v1",
+						"Suspects"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Suspect ExecAuto",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"Code\": \"000002\",\r\n\t\"StoreId\": \"01\",\r\n\t\"InternalId\": \"000002\",\r\n\t\"ShortName\": \"MOBILE\",\r\n\t\"Name\": \"MOBILE\",\r\n\t\"EntityType\": \"1-Company\",\r\n\t\"StrategicType\": \"3\",\r\n\t\"Origin\": \"1\",\r\n\t\"Address\": [],    \r\n}    "
+				},
+				"url": {
+					"raw": "http://localhost:8090/rest/execauto",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"rest",
+						"execauto"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Lista Usuarios",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InBKd3RQdWJsaWNLZXlGb3IyNTYifQ.eyJpc3MiOiJUT1RWUy1BRFZQTC1GV0pXVCIsInN1YiI6IkFkbWluaXN0cmFkb3IiLCJpYXQiOjE2MzEyNzcyNDQsInVzZXJpZCI6IjAwMDAwMCIsImV4cCI6MTYzMTI4MDg0NCwiZW52SWQiOiJwcm90aGV1czI3In0.iA6QDc-Ci2rSdUweP0XZ9M8BGp_t__8F9wJA5aaik367fzyeA5dj72FUE89Fy3OAutIzwpnCwBP4oayv1lRvnCBqUcIKZzmYnBsSsgR9d4ogdchJP_xFBRPjYHHaIZi26zmQ1Hl3ZDFSXi5jqRFsnRDyQ7PFs25v_OBD9N6WnaoOs9Qp0ynRgu8gsw-_mfNmDyRIFGUQdtZOxpJDLHJ_nl--JvykS1HgaWKr4l-4GCi6jLCTAaq95JRWECz-1KEHPnyY-4DqoGuHgHYYZ8-drPa8u1Zhg_glBRBBM3H-Wz94N3U-THkPpu6lPZLfYXbyEEOP5eh83CbR6qCH2tYPwQ",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url_protheus}}/users",
+					"host": [
+						"{{url_protheus}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Lancto Contabil",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic cmVzdDpyZXN0",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"lancamentos\": [\r\n        {\r\n            \"CT2_FILIAL\": \"010101\",\r\n            \"CT2_LOTE\": \"8890\",\r\n            \"CT2_SBLOTE\": \"001\",\r\n            \"CT2_DATA\": \"2021-06-11\",\r\n            \"CT2_DOC\": \"000123\",\r\n            \"CT2_VALOR\": 34553.18,\r\n            \"CT2_HIST\": \"INSS 13 SALARIO REF. 062021\",\r\n            \"CT2_DEBITO\": \"2105020001\",\r\n            \"CT2_CREDIT\": \"5101010006\",\r\n            \"CT2_CCD\": \"20009\",\r\n            \"CT2_CCC\": \"20111\"\r\n        },\r\n        {\r\n            \"CT2_FILIAL\": \"010101\",\r\n            \"CT2_LOTE\": \"8890\",\r\n            \"CT2_SBLOTE\": \"001\",\r\n            \"CT2_DATA\": \"2021-06-11\",\r\n            \"CT2_DOC\": \"000267\",\r\n            \"CT2_valor\": 34553.18,\r\n            \"CT2_HIST\": \"AJUDA DE CUSTO REF. 062021\",\r\n            \"CT2_DEBITO\": \"2105020028\",\r\n            \"CT2_CREDIT\": \"5101010007\",\r\n            \"CT2_CCD\": \"20009\",\r\n            \"CT2_CCC\": \"20111\"\r\n        }\r\n    ]\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9090/LANCTOCONTABIL",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"LANCTOCONTABIL"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Contas a Pagar",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic cmVzdDpyZXN0",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"titulos\": [\r\n        {\r\n            \"E2_FILIAL\": \"010101\",\r\n            \"E2_PREFIXO\": \"IMP\",\r\n            \"E2_NUM\": \"0000891246\",\r\n            \"E2_PARCELA\": \"01\",\r\n            \"E2_TIPO\": \"BOL\",\r\n            \"E2_NATUREZ\": \"10105\",\r\n            \"E2_FORNECE\": \"000001\",\r\n            \"E2_LOJA\": \"001\",\r\n            \"E2_EMISSAO\": \"2021-06-24\",\r\n            \"E2_VENCTO\": \"2021-07-24\",\r\n            \"E2_VENCREA\": \"2021-07-26\",\r\n            \"E2_VALOR\": 4728.44,\r\n            \"E2_HIST\": \"FOLHA DE PAGAMENTO\"\r\n        },\r\n        {\r\n            \"E2_FILIAL\": \"010101\",\r\n            \"E2_PREFIXO\": \"IMP\",\r\n            \"E2_NUM\": \"000344002\",\r\n            \"E2_PARCELA\": \"01\",\r\n            \"E2_TIPO\": \"TF\",\r\n            \"E2_NATUREZ\": \"10105\",\r\n            \"E2_FORNECE\": \"000328\",\r\n            \"E2_LOJA\": \"001\",\r\n            \"E2_EMISSAO\": \"2021-06-11\",\r\n            \"E2_VENCTO\": \"2021-07-11\",\r\n            \"E2_VENCREA\": \"2021-07-11\",\r\n            \"E2_VALOR\": 7000.27,\r\n            \"E2_HIST\": \"FOLHA DE PAGAMENTO\"\r\n        }\r\n    ]\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9090/CONTASPAGAR",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"CONTASPAGAR"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Empresa Logada",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/JURLEGALPROCESS/empresaLogada",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"JURLEGALPROCESS",
+						"empresaLogada"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ListaFontes",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\t\"fontes\":[\r\n\t\t\t\t\t{\"fonte\":\"DEVPS001.prw\" },\r\n\t\t\t\t\t{\"fonte\":\"DEVPS002.prw\" }\r\n\t\t\t  \t  ]\r\n\t}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://prewscorp.totvs.com.br/TIDEVOPS/api/v1/Listafontes?page=1&pagesize=10",
+					"protocol": "https",
+					"host": [
+						"prewscorp",
+						"totvs",
+						"com",
+						"br"
+					],
+					"path": [
+						"TIDEVOPS",
+						"api",
+						"v1",
+						"Listafontes"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "pagesize",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "99-FormStruct View",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url_protheus}}/api/framework/v1/basicProtheusServices/fwformstructview?alias=SA1",
+					"host": [
+						"{{url_protheus}}"
+					],
+					"path": [
+						"api",
+						"framework",
+						"v1",
+						"basicProtheusServices",
+						"fwformstructview"
+					],
+					"query": [
+						{
+							"key": "alias",
+							"value": "SA1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "04-ListaSRC",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "totvs",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://protheusapi.conceitho.com/listasrc?cTabela=SC&cId=000244",
+					"protocol": "https",
+					"host": [
+						"protheusapi",
+						"conceitho",
+						"com"
+					],
+					"path": [
+						"listasrc"
+					],
+					"query": [
+						{
+							"key": "cTabela",
+							"value": "SC"
+						},
+						{
+							"key": "cId",
+							"value": "000244"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "04-ListaSRCAll",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "totvs",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://protheusapi.conceitho.com/listasrcall?cId=SUP002",
+					"protocol": "https",
+					"host": [
+						"protheusapi",
+						"conceitho",
+						"com"
+					],
+					"path": [
+						"listasrcall"
+					],
+					"query": [
+						{
+							"key": "cId",
+							"value": "SUP002"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Testes",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "totvs",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"CR_APROV\": \"SA0001\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://protheusapi.conceitho.com/CRMMCONTACTS",
+					"protocol": "https",
+					"host": [
+						"protheusapi",
+						"conceitho",
+						"com"
+					],
+					"path": [
+						"CRMMCONTACTS"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "99. Model",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "totvs",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"CR_APROV\": \"SA0001\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://protheusapi.conceitho.com/fwmodel/MATA094/001",
+					"protocol": "https",
+					"host": [
+						"protheusapi",
+						"conceitho",
+						"com"
+					],
+					"path": [
+						"fwmodel",
+						"MATA094",
+						"001"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FormStruct View Direto",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url_protheus}}/api/framework/v1/basicProtheusServices/fwformstructview?alias=SA1",
+					"host": [
+						"{{url_protheus}}"
+					],
+					"path": [
+						"api",
+						"framework",
+						"v1",
+						"basicProtheusServices",
+						"fwformstructview"
+					],
+					"query": [
+						{
+							"key": "alias",
+							"value": "SA1"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "FormStruct View Direto",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://172.24.35.109:8050/api/framework/v1/basicProtheusServices/fwformstructview?alias=PX3",
+							"protocol": "http",
+							"host": [
+								"172",
+								"24",
+								"35",
+								"109"
+							],
+							"port": "8050",
+							"path": [
+								"api",
+								"framework",
+								"v1",
+								"basicProtheusServices",
+								"fwformstructview"
+							],
+							"query": [
+								{
+									"key": "alias",
+									"value": "PX3"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "HTTPREST"
+						},
+						{
+							"key": "Content-Length",
+							"value": "1768"
+						},
+						{
+							"key": "Content-Language",
+							"value": "pt-BR"
+						},
+						{
+							"key": "Content-Language",
+							"value": "pt-BR"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Status",
+							"value": "200 OK"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 31 Mar 2025 20:04:11 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"PX2\": {\n        \"fields\": [\n            {\n                \"field\": \"PX2_CONTRA\",\n                \"order\": \"02\",\n                \"title\": \"Nro Contrato\",\n                \"description\": \"Numero Contrato\",\n                \"picture\": \"\",\n                \"combobox\": [],\n                \"virtual\": false,\n                \"group\": \"\",\n                \"folder\": \"1\",\n                \"protectedData\": false,\n                \"canChange\": false,\n                \"userField\": true,\n                \"browse\": true,\n                \"required\": true,\n                \"type\": \"C\",\n                \"size\": 12,\n                \"decimal\": 0\n            },\n            {\n                \"field\": \"PX2_REVISA\",\n                \"order\": \"03\",\n                \"title\": \"Nro Revisao\",\n                \"description\": \"Revisao\",\n                \"picture\": \"\",\n                \"combobox\": [],\n                \"virtual\": false,\n                \"group\": \"\",\n                \"folder\": \"1\",\n                \"protectedData\": false,\n                \"canChange\": false,\n                \"userField\": true,\n                \"browse\": true,\n                \"required\": true,\n                \"type\": \"C\",\n                \"size\": 3,\n                \"decimal\": 0\n            },\n            {\n                \"field\": \"PX2_CTRFOR\",\n                \"order\": \"04\",\n                \"title\": \"Contrato For\",\n                \"description\": \"Nro Contrato Fornecedor\",\n                \"picture\": \"\",\n                \"combobox\": [],\n                \"virtual\": false,\n                \"group\": \"\",\n                \"folder\": \"1\",\n                \"protectedData\": false,\n                \"canChange\": true,\n                \"userField\": true,\n                \"browse\": true,\n                \"required\": true,\n                \"type\": \"C\",\n                \"size\": 50,\n                \"decimal\": 0\n            },\n            {\n                \"field\": \"PX2_OBJETO\",\n                \"order\": \"05\",\n                \"title\": \"Obj Contrato\",\n                \"description\": \"Objeto Contrato\",\n                \"picture\": \"\",\n                \"combobox\": [],\n                \"virtual\": false,\n                \"group\": \"\",\n                \"folder\": \"1\",\n                \"protectedData\": false,\n                \"canChange\": true,\n                \"userField\": true,\n                \"browse\": true,\n                \"required\": true,\n                \"type\": \"M\",\n                \"size\": 10,\n                \"decimal\": 0\n            },\n            {\n                \"field\": \"PX2_OBS\",\n                \"order\": \"06\",\n                \"title\": \"Obs Contrato\",\n                \"description\": \"Observacao Contrato\",\n                \"picture\": \"\",\n                \"combobox\": [],\n                \"virtual\": false,\n                \"group\": \"\",\n                \"folder\": \"1\",\n                \"protectedData\": false,\n                \"canChange\": true,\n                \"userField\": true,\n                \"browse\": true,\n                \"required\": false,\n                \"type\": \"M\",\n                \"size\": 10,\n                \"decimal\": 0\n            },\n            {\n                \"field\": \"PX2_COMPAR\",\n                \"order\": \"07\",\n                \"title\": \"Com Dad Pess\",\n                \"description\": \"Comp Dados Pessoais ?\",\n                \"picture\": \"\",\n                \"combobox\": [\n                    \"0=Nao\",\n                    \"1=Sim\",\n                    \"2=Nao Aplicavel\",\n                    \"               \"\n                ],\n                \"virtual\": false,\n                \"group\": \"\",\n                \"folder\": \"1\",\n                \"protectedData\": false,\n                \"canChange\": true,\n                \"userField\": true,\n                \"browse\": true,\n                \"required\": true,\n                \"type\": \"C\",\n                \"size\": 1,\n                \"decimal\": 0\n            },\n            {\n                \"field\": \"PX2_NIVRIS\",\n                \"order\": \"08\",\n                \"title\": \"Nivel Risco\",\n                \"description\": \"Nivel de Risco\",\n                \"picture\": \"\",\n                \"combobox\": [\n                    \"0=Não Aplicavel\",\n                    \"1=Alto\",\n                    \"2=Médio\",\n                    \"3=Baixo\",\n                    \"4=Recusou a Responder\",\n                    \"5=Pendente de Retorno\",\n                    \"                     \"\n                ],\n                \"virtual\": false,\n                \"group\": \"\",\n                \"folder\": \"1\",\n                \"protectedData\": false,\n                \"canChange\": true,\n                \"userField\": true,\n                \"browse\": true,\n                \"required\": true,\n                \"type\": \"C\",\n                \"size\": 1,\n                \"decimal\": 0\n            },\n            {\n                \"field\": \"PX2_LGPD\",\n                \"order\": \"09\",\n                \"title\": \"Clau LGPD\",\n                \"description\": \"Clausula LGPD\",\n                \"picture\": \"\",\n                \"combobox\": [\n                    \"0=Nao\",\n                    \"1=Sim\",\n                    \"2=N/A\",\n                    \"     \"\n                ],\n                \"virtual\": false,\n                \"group\": \"\",\n                \"folder\": \"1\",\n                \"protectedData\": false,\n                \"canChange\": true,\n                \"userField\": true,\n                \"browse\": true,\n                \"required\": true,\n                \"type\": \"C\",\n                \"size\": 1,\n                \"decimal\": 0\n            },\n            {\n                \"field\": \"PX2_SUBLOC\",\n                \"order\": \"10\",\n                \"title\": \"Sub-Locação\",\n                \"description\": \"Sub-Locação ?\",\n                \"picture\": \"\",\n                \"combobox\": [\n                    \"0=Nao\",\n                    \"1=Sim\",\n                    \"     \"\n                ],\n                \"virtual\": false,\n                \"group\": \"\",\n                \"folder\": \"1\",\n                \"protectedData\": false,\n                \"canChange\": true,\n                \"userField\": true,\n                \"browse\": true,\n                \"required\": true,\n                \"type\": \"C\",\n                \"size\": 1,\n                \"decimal\": 0\n            },\n            {\n                \"field\": \"PX2_CONPRI\",\n                \"order\": \"11\",\n                \"title\": \"Ct Principal\",\n                \"description\": \"Contrato Principal\",\n                \"picture\": \"\",\n                \"combobox\": [],\n                \"virtual\": false,\n                \"group\": \"\",\n                \"folder\": \"1\",\n                \"protectedData\": false,\n                \"canChange\": true,\n                \"userField\": true,\n                \"browse\": true,\n                \"required\": false,\n                \"type\": \"C\",\n                \"size\": 12,\n                \"decimal\": 0\n            },\n            {\n                \"field\": \"PX2_IFRS16\",\n                \"order\": \"12\",\n                \"title\": \"Ctrl IFRS 16\",\n                \"description\": \"Controle IFRS 16\",\n                \"picture\": \"\",\n                \"combobox\": [\n                    \"0=Nao\",\n                    \"1=Sim\",\n                    \"2=Avaliacao\",\n                    \"           \"\n                ],\n                \"virtual\": false,\n                \"group\": \"\",\n                \"folder\": \"1\",\n                \"protectedData\": false,\n                \"canChange\": true,\n                \"userField\": true,\n                \"browse\": true,\n                \"required\": true,\n                \"type\": \"C\",\n                \"size\": 1,\n                \"decimal\": 0\n            },\n            {\n                \"field\": \"PX2_ADINEG\",\n                \"order\": \"13\",\n                \"title\": \"Aditivo Neg\",\n                \"description\": \"Aditivo em Negociação\",\n                \"picture\": \"\",\n                \"combobox\": [],\n                \"virtual\": false,\n                \"group\": \"\",\n                \"folder\": \"1\",\n                \"protectedData\": false,\n                \"canChange\": true,\n                \"userField\": true,\n                \"browse\": true,\n                \"required\": false,\n                \"type\": \"M\",\n                \"size\": 10,\n                \"decimal\": 0\n            },\n            {\n                \"field\": \"PX2_DOCTRB\",\n                \"order\": \"14\",\n                \"title\": \"Doc Trab\",\n                \"description\": \"Documentação Trabalhista\",\n                \"picture\": \"\",\n                \"combobox\": [\n                    \"0=Aguardando posição\",\n                    \"1=Não\",\n                    \"2=Não,menor 22hrs\",\n                    \"3=Sim,Atividade Core\",\n                    \"4=Sim,Atividade Não Core\",\n                    \"                        \"\n                ],\n                \"virtual\": false,\n                \"group\": \"\",\n                \"folder\": \"1\",\n                \"protectedData\": false,\n                \"canChange\": true,\n                \"userField\": true,\n                \"browse\": true,\n                \"required\": true,\n                \"type\": \"C\",\n                \"size\": 1,\n                \"decimal\": 0\n            },\n            {\n                \"field\": \"PX2_SEGMEN\",\n                \"order\": \"15\",\n                \"title\": \"Segmento\",\n                \"description\": \"Segmento\",\n                \"picture\": \"\",\n                \"combobox\": [],\n                \"virtual\": false,\n                \"group\": \"\",\n                \"folder\": \"1\",\n                \"protectedData\": false,\n                \"canChange\": true,\n                \"userField\": true,\n                \"browse\": true,\n                \"required\": true,\n                \"type\": \"C\",\n                \"size\": 2,\n                \"decimal\": 0\n            },\n            {\n                \"field\": \"PX2_DESSEG\",\n                \"order\": \"16\",\n                \"title\": \"Des Segmento\",\n                \"description\": \"Descrição Segmento\",\n                \"picture\": \"@!\",\n                \"combobox\": [],\n                \"virtual\": true,\n                \"group\": \"\",\n                \"folder\": \"1\",\n                \"protectedData\": false,\n                \"canChange\": false,\n                \"userField\": true,\n                \"browse\": true,\n                \"required\": false,\n                \"type\": \"C\",\n                \"size\": 55,\n                \"decimal\": 0\n            },\n            {\n                \"field\": \"PX2_AREGES\",\n                \"order\": \"17\",\n                \"title\": \"Area Res Con\",\n                \"description\": \"Area Responsavel Contrato\",\n                \"picture\": \"\",\n                \"combobox\": [],\n                \"virtual\": false,\n                \"group\": \"\",\n                \"folder\": \"1\",\n                \"protectedData\": false,\n                \"canChange\": true,\n                \"userField\": true,\n                \"browse\": true,\n                \"required\": true,\n                \"type\": \"C\",\n                \"size\": 3,\n                \"decimal\": 0\n            },\n            {\n                \"field\": \"PX2_DESCGS\",\n                \"order\": \"18\",\n                \"title\": \"Des Area\",\n                \"description\": \"Descrição Area\",\n                \"picture\": \"@!\",\n                \"combobox\": [],\n                \"virtual\": true,\n                \"group\": \"\",\n                \"folder\": \"1\",\n                \"protectedData\": false,\n                \"canChange\": false,\n                \"userField\": true,\n                \"browse\": true,\n                \"required\": false,\n                \"type\": \"C\",\n                \"size\": 55,\n                \"decimal\": 0\n            },\n            {\n                \"field\": \"PX2_LNKCFG\",\n                \"order\": \"19\",\n                \"title\": \"Link Fluig\",\n                \"description\": \"Link Fluig\",\n                \"picture\": \"\",\n                \"combobox\": [],\n                \"virtual\": false,\n                \"group\": \"\",\n                \"folder\": \"1\",\n                \"protectedData\": false,\n                \"canChange\": true,\n                \"userField\": true,\n                \"browse\": true,\n                \"required\": false,\n                \"type\": \"C\",\n                \"size\": 150,\n                \"decimal\": 0\n            },\n            {\n                \"field\": \"PX2_DATAIN\",\n                \"order\": \"20\",\n                \"title\": \"Data Inicio\",\n                \"description\": \"Data Inicio\",\n                \"picture\": \"@D\",\n                \"combobox\": [],\n                \"virtual\": false,\n                \"group\": \"\",\n                \"folder\": \"1\",\n                \"protectedData\": false,\n                \"canChange\": true,\n                \"userField\": true,\n                \"browse\": true,\n                \"required\": true,\n                \"type\": \"D\",\n                \"size\": 8,\n                \"decimal\": 0\n            },\n            {\n                \"field\": \"PX2_DATAFI\",\n                \"order\": \"21\",\n                \"title\": \"Data Final\",\n                \"description\": \"Data Final\",\n                \"picture\": \"@D\",\n                \"combobox\": [],\n                \"virtual\": false,\n                \"group\": \"\",\n                \"folder\": \"1\",\n                \"protectedData\": false,\n                \"canChange\": true,\n                \"userField\": true,\n                \"browse\": true,\n                \"required\": true,\n                \"type\": \"D\",\n                \"size\": 8,\n                \"decimal\": 0\n            },\n            {\n                \"field\": \"PX2_DATASS\",\n                \"order\": \"22\",\n                \"title\": \"Data Ass\",\n                \"description\": \"Data Assinatura\",\n                \"picture\": \"@D\",\n                \"combobox\": [],\n                \"virtual\": false,\n                \"group\": \"\",\n                \"folder\": \"1\",\n                \"protectedData\": false,\n                \"canChange\": true,\n                \"userField\": true,\n                \"browse\": true,\n                \"required\": true,\n                \"type\": \"D\",\n                \"size\": 8,\n                \"decimal\": 0\n            },\n            {\n                \"field\": \"PX2_AVIREN\",\n                \"order\": \"23\",\n                \"title\": \"Aviso Ren\",\n                \"description\": \"Aviso Renovacao\",\n                \"picture\": \"@D\",\n                \"combobox\": [],\n                \"virtual\": false,\n                \"group\": \"\",\n                \"folder\": \"2\",\n                \"protectedData\": false,\n                \"canChange\": true,\n                \"userField\": true,\n                \"browse\": true,\n                \"required\": true,\n                \"type\": \"D\",\n                \"size\": 8,\n                \"decimal\": 0\n            },\n            {\n                \"field\": \"PX2_STAREN\",\n                \"order\": \"24\",\n                \"title\": \"St Renovacao\",\n                \"description\": \"Status da Renovação\",\n                \"picture\": \"\",\n                \"combobox\": [],\n                \"virtual\": false,\n                \"group\": \"\",\n                \"folder\": \"2\",\n                \"protectedData\": false,\n                \"canChange\": true,\n                \"userField\": true,\n                \"browse\": true,\n                \"required\": true,\n                \"type\": \"C\",\n                \"size\": 1,\n                \"decimal\": 0\n            },\n            {\n                \"field\": \"PX2_DESREN\",\n                \"order\": \"25\",\n                \"title\": \"Des Renovac\",\n                \"description\": \"Descrição Renovação\",\n                \"picture\": \"@!\",\n                \"combobox\": [],\n                \"virtual\": true,\n                \"group\": \"\",\n                \"folder\": \"2\",\n                \"protectedData\": false,\n                \"canChange\": false,\n                \"userField\": true,\n                \"browse\": true,\n                \"required\": false,\n                \"type\": \"C\",\n                \"size\": 55,\n                \"decimal\": 0\n            },\n            {\n                \"field\": \"PX2_TIPREN\",\n                \"order\": \"26\",\n                \"title\": \"Tipo Renov\",\n                \"description\": \"Tipo de Renovação\",\n                \"picture\": \"\",\n                \"combobox\": [\n                    \"0=Automática\",\n                    \"1=Determinado com Aditivio\",\n                    \"2=Determinado\",\n                    \"3=Indeterminado\",\n                    \"4=Determinado sem Renovação\",\n                    \"                          \"\n                ],\n                \"virtual\": false,\n                \"group\": \"\",\n                \"folder\": \"2\",\n                \"protectedData\": false,\n                \"canChange\": true,\n                \"userField\": true,\n                \"browse\": true,\n                \"required\": false,\n                \"type\": \"C\",\n                \"size\": 1,\n                \"decimal\": 0\n            },\n            {\n                \"field\": \"PX2_RENSUP\",\n                \"order\": \"27\",\n                \"title\": \"Envia Suprim\",\n                \"description\": \"Envia Renovacao Supriment\",\n                \"picture\": \"\",\n                \"combobox\": [\n                    \"1=Sim\",\n                    \"0=Nao\",\n                    \"     \"\n                ],\n                \"virtual\": false,\n                \"group\": \"\",\n                \"folder\": \"2\",\n                \"protectedData\": false,\n                \"canChange\": true,\n                \"userField\": true,\n                \"browse\": true,\n                \"required\": false,\n                \"type\": \"C\",\n                \"size\": 1,\n                \"decimal\": 0\n            },\n            {\n                \"field\": \"PX2_STATUS\",\n                \"order\": \"28\",\n                \"title\": \"Sts Contrato\",\n                \"description\": \"Status do Contrato\",\n                \"picture\": \"\",\n                \"combobox\": [\n                    \"0=Vigente\",\n                    \"1=Em Encerramento\",\n                    \"2=Vencido- Pag. Suspenso\",\n                    \"3=Encerrado com Pendencia\",\n                    \"4=Vencido- Processo em Andamento\",\n                    \"                                \"\n                ],\n                \"virtual\": false,\n                \"group\": \"\",\n                \"folder\": \"1\",\n                \"protectedData\": false,\n                \"canChange\": true,\n                \"userField\": true,\n                \"browse\": true,\n                \"required\": false,\n                \"type\": \"C\",\n                \"size\": 1,\n                \"decimal\": 0\n            },\n            {\n                \"field\": \"PX2_PRZRES\",\n                \"order\": \"29\",\n                \"title\": \"Prz Rescisão\",\n                \"description\": \"Prazo Rescisão\",\n                \"picture\": \"999\",\n                \"combobox\": [],\n                \"virtual\": false,\n                \"group\": \"\",\n                \"folder\": \"1\",\n                \"protectedData\": false,\n                \"canChange\": true,\n                \"userField\": true,\n                \"browse\": true,\n                \"required\": false,\n                \"type\": \"N\",\n                \"size\": 3,\n                \"decimal\": 0\n            },\n            {\n                \"field\": \"PX2_PRVENC\",\n                \"order\": \"30\",\n                \"title\": \"Prev Encer\",\n                \"description\": \"Previsão Encerramento\",\n                \"picture\": \"@D\",\n                \"combobox\": [],\n                \"virtual\": false,\n                \"group\": \"\",\n                \"folder\": \"1\",\n                \"protectedData\": false,\n                \"canChange\": true,\n                \"userField\": true,\n                \"browse\": true,\n                \"required\": false,\n                \"type\": \"D\",\n                \"size\": 8,\n                \"decimal\": 0\n            },\n            {\n                \"field\": \"PX2_COND\",\n                \"order\": \"31\",\n                \"title\": \"Condicao\",\n                \"description\": \"Condição de Pagto\",\n                \"picture\": \"\",\n                \"combobox\": [],\n                \"virtual\": false,\n                \"group\": \"\",\n                \"folder\": \"1\",\n                \"protectedData\": false,\n                \"canChange\": true,\n                \"userField\": true,\n                \"browse\": true,\n                \"required\": true,\n                \"type\": \"C\",\n                \"size\": 1,\n                \"decimal\": 0\n            },\n            {\n                \"field\": \"PX2_CONDES\",\n                \"order\": \"32\",\n                \"title\": \"Des Condição\",\n                \"description\": \"Descrição Condição\",\n                \"picture\": \"@!\",\n                \"combobox\": [],\n                \"virtual\": true,\n                \"group\": \"\",\n                \"folder\": \"1\",\n                \"protectedData\": false,\n                \"canChange\": false,\n                \"userField\": true,\n                \"browse\": true,\n                \"required\": true,\n                \"type\": \"C\",\n                \"size\": 55,\n                \"decimal\": 0\n            },\n            {\n                \"field\": \"PX2_VENNEG\",\n                \"order\": \"33\",\n                \"title\": \"Vencto Negoc\",\n                \"description\": \"Vencimento Negociado\",\n                \"picture\": \"\",\n                \"combobox\": [],\n                \"virtual\": false,\n                \"group\": \"\",\n                \"folder\": \"1\",\n                \"protectedData\": false,\n                \"canChange\": true,\n                \"userField\": true,\n                \"browse\": true,\n                \"required\": false,\n                \"type\": \"N\",\n                \"size\": 2,\n                \"decimal\": 0\n            },\n            {\n                \"field\": \"PX2_VALOR\",\n                \"order\": \"35\",\n                \"title\": \"Valor Total\",\n                \"description\": \"Valor Total\",\n                \"picture\": \"@E 9,999,999,999,999.99\",\n                \"combobox\": [],\n                \"virtual\": false,\n                \"group\": \"\",\n                \"folder\": \"1\",\n                \"protectedData\": false,\n                \"canChange\": false,\n                \"userField\": true,\n                \"browse\": true,\n                \"required\": false,\n                \"type\": \"N\",\n                \"size\": 15,\n                \"decimal\": 2\n            },\n            {\n                \"field\": \"PX2_INDREJ\",\n                \"order\": \"37\",\n                \"title\": \"Ind Reajuste\",\n                \"description\": \"Indice de Reajuste\",\n                \"picture\": \"\",\n                \"combobox\": [],\n                \"virtual\": false,\n                \"group\": \"\",\n                \"folder\": \"3\",\n                \"protectedData\": false,\n                \"canChange\": true,\n                \"userField\": true,\n                \"browse\": true,\n                \"required\": true,\n                \"type\": \"C\",\n                \"size\": 2,\n                \"decimal\": 0\n            },\n            {\n                \"field\": \"PX2_DESREJ\",\n                \"order\": \"38\",\n                \"title\": \"Des Reajuste\",\n                \"description\": \"Descrição Reajuste\",\n                \"picture\": \"@!\",\n                \"combobox\": [],\n                \"virtual\": true,\n                \"group\": \"\",\n                \"folder\": \"3\",\n                \"protectedData\": false,\n                \"canChange\": false,\n                \"userField\": true,\n                \"browse\": true,\n                \"required\": false,\n                \"type\": \"C\",\n                \"size\": 55,\n                \"decimal\": 0\n            },\n            {\n                \"field\": \"PX2_MESREJ\",\n                \"order\": \"39\",\n                \"title\": \"Mes Reajuste\",\n                \"description\": \"Mes do Reajuste\",\n                \"picture\": \"\",\n                \"combobox\": [],\n                \"virtual\": false,\n                \"group\": \"\",\n                \"folder\": \"3\",\n                \"protectedData\": false,\n                \"canChange\": true,\n                \"userField\": true,\n                \"browse\": true,\n                \"required\": true,\n                \"type\": \"C\",\n                \"size\": 2,\n                \"decimal\": 0\n            },\n            {\n                \"field\": \"PX2_DESMRJ\",\n                \"order\": \"40\",\n                \"title\": \"Desc Mes Rea\",\n                \"description\": \"Desc Mes Reajuste\",\n                \"picture\": \"@!\",\n                \"combobox\": [],\n                \"virtual\": true,\n                \"group\": \"\",\n                \"folder\": \"3\",\n                \"protectedData\": false,\n                \"canChange\": false,\n                \"userField\": true,\n                \"browse\": true,\n                \"required\": false,\n                \"type\": \"C\",\n                \"size\": 55,\n                \"decimal\": 0\n            },\n            {\n                \"field\": \"PX2_USERIC\",\n                \"order\": \"41\",\n                \"title\": \"Usr Inclusao\",\n                \"description\": \"Usuario Inclusao\",\n                \"picture\": \"\",\n                \"combobox\": [],\n                \"virtual\": false,\n                \"group\": \"\",\n                \"folder\": \"4\",\n                \"protectedData\": false,\n                \"canChange\": false,\n                \"userField\": true,\n                \"browse\": false,\n                \"required\": false,\n                \"type\": \"C\",\n                \"size\": 6,\n                \"decimal\": 0\n            },\n            {\n                \"field\": \"PX2_NUSINC\",\n                \"order\": \"42\",\n                \"title\": \"Nom Usu Inc\",\n                \"description\": \"Nome Usuario Inclusao\",\n                \"picture\": \"@!\",\n                \"combobox\": [],\n                \"virtual\": true,\n                \"group\": \"\",\n                \"folder\": \"4\",\n                \"protectedData\": false,\n                \"canChange\": false,\n                \"userField\": true,\n                \"browse\": true,\n                \"required\": false,\n                \"type\": \"C\",\n                \"size\": 60,\n                \"decimal\": 0\n            },\n            {\n                \"field\": \"PX2_DTAINC\",\n                \"order\": \"43\",\n                \"title\": \"Dat Inclusao\",\n                \"description\": \"Data Inclusao\",\n                \"picture\": \"@D\",\n                \"combobox\": [],\n                \"virtual\": false,\n                \"group\": \"\",\n                \"folder\": \"4\",\n                \"protectedData\": false,\n                \"canChange\": false,\n                \"userField\": true,\n                \"browse\": false,\n                \"required\": false,\n                \"type\": \"D\",\n                \"size\": 8,\n                \"decimal\": 0\n            },\n            {\n                \"field\": \"PX2_USERAL\",\n                \"order\": \"44\",\n                \"title\": \"Usr Altera\",\n                \"description\": \"Usuario Alteracao\",\n                \"picture\": \"\",\n                \"combobox\": [],\n                \"virtual\": false,\n                \"group\": \"\",\n                \"folder\": \"4\",\n                \"protectedData\": false,\n                \"canChange\": false,\n                \"userField\": true,\n                \"browse\": false,\n                \"required\": false,\n                \"type\": \"C\",\n                \"size\": 6,\n                \"decimal\": 0\n            },\n            {\n                \"field\": \"PX2_DTAALT\",\n                \"order\": \"45\",\n                \"title\": \"Dat Alterac\",\n                \"description\": \"Data Alteracao\",\n                \"picture\": \"@D\",\n                \"combobox\": [],\n                \"virtual\": false,\n                \"group\": \"\",\n                \"folder\": \"4\",\n                \"protectedData\": false,\n                \"canChange\": false,\n                \"userField\": true,\n                \"browse\": false,\n                \"required\": false,\n                \"type\": \"D\",\n                \"size\": 8,\n                \"decimal\": 0\n            },\n            {\n                \"field\": \"PX2_NUSALT\",\n                \"order\": \"46\",\n                \"title\": \"Nom Usu Alt\",\n                \"description\": \"Nome Usuario Alteracao\",\n                \"picture\": \"@!\",\n                \"combobox\": [],\n                \"virtual\": true,\n                \"group\": \"\",\n                \"folder\": \"4\",\n                \"protectedData\": false,\n                \"canChange\": false,\n                \"userField\": true,\n                \"browse\": true,\n                \"required\": false,\n                \"type\": \"C\",\n                \"size\": 60,\n                \"decimal\": 0\n            }\n        ],\n        \"groups\": [],\n        \"folders\": [\n            {\n                \"id\": \"1\",\n                \"title\": \"Cadastrais\"\n            },\n            {\n                \"id\": \"2\",\n                \"title\": \"Renovacao\"\n            },\n            {\n                \"id\": \"3\",\n                \"title\": \"Reajuste\"\n            },\n            {\n                \"id\": \"4\",\n                \"title\": \"Auditoria\"\n            }\n        ]\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Consulta Dicionario",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "303351@Wag2029",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "totvspartners\\tp.wagner.mcosta",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://172.24.35.109:8050/api/v1/dicionario/PX7",
+					"protocol": "http",
+					"host": [
+						"172",
+						"24",
+						"35",
+						"109"
+					],
+					"port": "8050",
+					"path": [
+						"api",
+						"v1",
+						"dicionario",
+						"PX7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Lista de Serviços",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url_protheus}}/tlpp/rest/list/service",
+					"host": [
+						"{{url_protheus}}"
+					],
+					"path": [
+						"tlpp",
+						"rest",
+						"list",
+						"service"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "99-FwModel",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/rest/fwModel/FSMSERVICO/?FIELDVIRTUAL=true&FIELDEMPTY=true",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"rest",
+						"fwModel",
+						"FSMSERVICO",
+						""
+					],
+					"query": [
+						{
+							"key": "FIELDVIRTUAL",
+							"value": "true"
+						},
+						{
+							"key": "FIELDEMPTY",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
